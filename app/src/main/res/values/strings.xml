@@ -1,0 +1,35 @@
+<resources>
+  <string name="app_name">Love Letter</string>
+  <string name="navigation_drawer_open">Open navigation drawer</string>
+  <string name="navigation_drawer_close">Close navigation drawer</string>
+  <string name="nav_header_title">Android Studio</string>
+  <string name="nav_header_subtitle">android.studio@android.com</string>
+  <string name="nav_header_desc">Navigation header</string>
+  <string name="action_settings">Settings</string>
+
+
+  <!-- TODO: Remove or change this placeholder text -->
+  <string name="menu_sent">Sent</string>
+  <string name="hello_blank_fragment">Hello blank fragment</string>
+  <string name="menu_inbox">Inbox</string>
+  <string name="menu_setting">Setting</string>
+  <string name="title_activity_test">TestActivity</string>
+  <string name="menu_draft">Draft</string>
+  <string name="edit_profile">Edit Profile</string>
+  <string name="action_push">Push</string>
+  <string name="action_send">Send</string>
+  <string name="agree">Agree</string>
+  <string name="terms_of_service">Terms of Service</string>
+  <string name="privacy_policy">Privacy Policy</string>
+  <string name="agreement">Agreement</string>
+  <string name="ps">PS</string>
+  <string name="description">Description</string>
+  <string name="title">Title</string>
+  <string name="recipient">Recipient</string>
+  <string name="name">Name</string>
+  <string name="email">Email</string>
+  <string name="password">Password</string>
+  <string name="save">Save</string>
+  <string name="to_email">To: %1$s</string>
+  <string name="from_email">From: %1$s</string>
+</resources>
