@@ -36,9 +36,7 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.os.Build
-import android.os.Bundle
 import androidx.core.app.NotificationCompat
-import androidx.navigation.NavDeepLinkBuilder
 import com.google.gson.Gson
 import com.raywenderlich.android.loveletter.R
 import com.raywenderlich.android.loveletter.model.Letter
@@ -56,7 +54,7 @@ class NotificationHelper(val context: Context) {
 
   fun sendLocalNotification(letter: Letter) {
     val pendingIntent = buildPendingIntentFromNavigation(letter)
-    val notification = buildLetterNotification(letter, pendingIntent)
+    val notification = buildLetterNotification(letter, pendingIntent!!)
 
     val notificationManager =
       context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -94,14 +92,9 @@ class NotificationHelper(val context: Context) {
       .build()
   }
 
-  private fun buildPendingIntentFromNavigation(letter: Letter): PendingIntent {
-    val bundle = Bundle()
-    bundle.putString(EXTRA_LETTER, gson.toJson(letter))
-    return NavDeepLinkBuilder(context)
-      .setGraph(R.navigation.nav_graph)
-      .setDestination(R.id.presentationFragment)
-      .setGraph(R.navigation.nav_graph)
-      .setArguments(bundle)
-      .createPendingIntent()
+  private fun buildPendingIntentFromNavigation(letter: Letter): PendingIntent? {
+    // TODO: create pending intent with NavDeepLinkBuilder
+
+    return null
   }
 }

@@ -17,8 +17,6 @@
       android:name=".MainActivity"
       android:label="@string/app_name"
       android:theme="@style/AppTheme.NoActionBar">
-      <nav-graph android:value="@navigation/nav_graph" />
-      <nav-graph android:value="@navigation/agreement_graph" />
       <intent-filter>
         <action android:name="android.intent.action.MAIN" />
 

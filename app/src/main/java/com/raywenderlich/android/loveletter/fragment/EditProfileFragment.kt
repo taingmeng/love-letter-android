@@ -44,7 +44,7 @@ import kotlinx.android.synthetic.main.fragment_edit_profile.*
 
 class EditProfileFragment : DialogFragment() {
 
-  private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.main_nav_graph)
+  private val lettersViewModel: LettersViewModel? by navGraphViewModels(R.id.main_nav_graph)
 
   override fun onCreateView(
     inflater: LayoutInflater, container: ViewGroup?,
