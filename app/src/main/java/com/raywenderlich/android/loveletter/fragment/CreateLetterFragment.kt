@@ -65,14 +65,6 @@ class CreateLetterFragment : Fragment(R.layout.fragment_create_letter) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    lettersViewModel.sentLiveData.observe(this, Observer {
-      it.getContentIfNotHandled()?.let { sent ->
-        if (sent) findNavController().popBackStack(R.id.sentFragment, false)
-      }
-    })
-    lettersViewModel.nameRequiredLiveData.observe(this, Observer<Boolean> {
-      findNavController().navigate(R.id.editProfileFragment)
-    })
     lettersViewModel.toastLiveData.observe(this, Observer<Event<String>> { it ->
       it.getContentIfNotHandled()?.let {
         Toast.makeText(this@CreateLetterFragment.context, it, Toast.LENGTH_LONG).show()

@@ -52,9 +52,7 @@ class LettersViewModel(val app: Application) : AndroidViewModel(app) {
 
   val sentLettersLiveData: MediatorLiveData<List<Letter>> = MediatorLiveData()
   val inboxLettersLiveData: MediatorLiveData<List<Letter>> = MediatorLiveData()
-  val nameRequiredLiveData: MutableLiveData<Boolean> = MutableLiveData()
   val toastLiveData: MutableLiveData<Event<String>> = MutableLiveData()
-  val sentLiveData: MutableLiveData<Event<Boolean>> = MutableLiveData()
 
   var loading = ObservableField(View.GONE)
 
@@ -129,7 +127,6 @@ class LettersViewModel(val app: Application) : AndroidViewModel(app) {
     val letter = buildLetterToSend()
     letterRepository.insertSent(letter)
     loadSentLetters()
-    sentLiveData.postValue(Event(true))
     clearLetterFields()
     return letter
   }
