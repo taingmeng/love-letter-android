@@ -37,7 +37,7 @@
   <fragment
       android:id="@+id/inboxFragment"
       android:name="com.raywenderlich.android.loveletter.fragment.InboxFragment"
-      android:label="Inbox"
+      android:label="@string/menu_inbox"
       tools:layout="@layout/fragment_inbox">
     <action
         android:id="@+id/presentLetter"
@@ -56,7 +56,7 @@
   <fragment
       android:id="@+id/sentFragment"
       android:name="com.raywenderlich.android.loveletter.fragment.SentFragment"
-      android:label="Sent"
+      android:label="@string/menu_sent"
       tools:layout="@layout/fragment_sent">
 
     <action
@@ -79,7 +79,7 @@
   <fragment
     android:id="@+id/presentationFragment"
     android:name="com.raywenderlich.android.loveletter.fragment.PresentationFragment"
-    android:label="Presentation"
+    android:label="@string/presentation"
     tools:layout="@layout/fragment_presentation">
 
     <argument
@@ -93,7 +93,7 @@
   <fragment
     android:id="@+id/createLetterFragment"
     android:name="com.raywenderlich.android.loveletter.fragment.CreateLetterFragment"
-    android:label="Create Letter"
+    android:label="@string/create_letter"
     tools:layout="@layout/fragment_create_letter">
     <action
         android:id="@+id/editProfile"
