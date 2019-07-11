@@ -103,7 +103,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     fab.setOnClickListener {
       // TODO: navigate to create letter fragment
-
     }
   }
 
