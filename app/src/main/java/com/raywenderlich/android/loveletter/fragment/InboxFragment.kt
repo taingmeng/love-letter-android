@@ -49,7 +49,7 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
 
   private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.main_nav_graph)
 
-  private val adapter by lazy { LetterAdapter(false) }
+  private val adapter by lazy { LetterAdapter(FragmentType.INBOX) }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

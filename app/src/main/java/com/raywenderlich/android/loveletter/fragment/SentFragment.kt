@@ -49,7 +49,7 @@ class SentFragment : Fragment(R.layout.fragment_sent) {
 
   private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.main_nav_graph)
 
-  private val adapter by lazy { LetterAdapter(true) }
+  private val adapter by lazy { LetterAdapter(FragmentType.SENT) }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)

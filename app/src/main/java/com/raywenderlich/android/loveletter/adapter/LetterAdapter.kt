@@ -33,11 +33,13 @@ package com.raywenderlich.android.loveletter.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.raywenderlich.android.loveletter.model.FragmentType
 import com.raywenderlich.android.loveletter.model.Letter
 import com.raywenderlich.android.loveletter.viewholder.LetterViewHolder
 import kotlinx.android.synthetic.main.view_holder_letter.view.*
 
-class LetterAdapter(val sent: Boolean) : RecyclerView.Adapter<LetterViewHolder>() {
+class LetterAdapter(private val fragmentType: FragmentType) :
+  RecyclerView.Adapter<LetterViewHolder>() {
 
   private val list: MutableList<Letter> = mutableListOf()
 
@@ -57,7 +59,7 @@ class LetterAdapter(val sent: Boolean) : RecyclerView.Adapter<LetterViewHolder>(
     holder.itemView.ivDelete.setOnClickListener {
       itemDeleteListener?.invoke(item)
     }
-    holder.bind(item, sent)
+    holder.bind(item, fragmentType)
   }
 
   fun setItemClickListener(listener: (letter: Letter) -> Unit) {

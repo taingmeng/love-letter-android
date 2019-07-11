@@ -36,6 +36,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.raywenderlich.android.loveletter.R
 import com.raywenderlich.android.loveletter.extension.getString
 import com.raywenderlich.android.loveletter.helper.DateTimeHelper
+import com.raywenderlich.android.loveletter.model.FragmentType
 import com.raywenderlich.android.loveletter.model.Letter
 import kotlinx.android.synthetic.main.view_holder_letter.view.*
 
@@ -44,15 +45,17 @@ class LetterViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
 
   private val dateTimeHelper = DateTimeHelper()
 
-  fun bind(letter: Letter, sent: Boolean) {
+  fun bind(letter: Letter, fragmentType: FragmentType) {
     itemView.tvTitle.text = letter.title
-
-    if (sent) {
-      itemView.tvEmail.text = itemView.getString(R.string.to_email, letter.to ?: "")
-      itemView.tvDate.text = dateTimeHelper.parse(letter.sentAt)
-    } else {
-      itemView.tvEmail.text = itemView.getString(R.string.from_email, letter.from ?: "")
-      itemView.tvDate.text = dateTimeHelper.parse(letter.receivedAt)
+    when (fragmentType) {
+      FragmentType.SENT -> {
+        itemView.tvEmail.text = itemView.getString(R.string.to_email, letter.to ?: "")
+        itemView.tvDate.text = dateTimeHelper.parse(letter.sentAt)
+      }
+      FragmentType.INBOX -> {
+        itemView.tvEmail.text = itemView.getString(R.string.from_email, letter.from ?: "")
+        itemView.tvDate.text = dateTimeHelper.parse(letter.receivedAt)
+      }
     }
   }
 }
