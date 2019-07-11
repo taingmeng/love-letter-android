@@ -44,7 +44,7 @@ import com.raywenderlich.android.loveletter.extension.Event
 import com.raywenderlich.android.loveletter.extension.hideKeyboard
 import com.raywenderlich.android.loveletter.viewmodel.LettersViewModel
 
-class CreateLetterFragment : Fragment(R.layout.fragment_create_letter) {
+class CreateLetterFragment : Fragment() {
 
   private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.main_nav_graph)
 
