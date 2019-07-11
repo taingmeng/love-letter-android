@@ -36,8 +36,6 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import com.raywenderlich.android.loveletter.R
 import com.raywenderlich.android.loveletter.databinding.FragmentCreateLetterBinding
 import com.raywenderlich.android.loveletter.extension.Event
@@ -46,7 +44,7 @@ import com.raywenderlich.android.loveletter.viewmodel.LettersViewModel
 
 class CreateLetterFragment : Fragment() {
 
-  private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.main_nav_graph)
+  private val lettersViewModel: LettersViewModel? = null
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -65,7 +63,7 @@ class CreateLetterFragment : Fragment() {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
-    lettersViewModel.toastLiveData.observe(this, Observer<Event<String>> { it ->
+    lettersViewModel?.toastLiveData?.observe(this, Observer<Event<String>> { it ->
       it.getContentIfNotHandled()?.let {
         Toast.makeText(this@CreateLetterFragment.context, it, Toast.LENGTH_LONG).show()
       }
@@ -78,20 +76,21 @@ class CreateLetterFragment : Fragment() {
 
   override fun onOptionsItemSelected(item: MenuItem): Boolean {
     when (item.itemId) {
-      R.id.action_send -> handleSend { lettersViewModel.sendLetterWithDeeplink() }
+      R.id.action_send -> handleSend { lettersViewModel?.sendLetterWithDeeplink() }
 
-      R.id.action_push -> handleSend { lettersViewModel.sendPushNotification() }
+      R.id.action_push -> handleSend { lettersViewModel?.sendPushNotification() }
     }
     return super.onOptionsItemSelected(item)
   }
 
   private fun handleSend(toSend: () -> Unit) {
-    if (lettersViewModel.hasFullProfile()) {
+    if (lettersViewModel?.hasFullProfile()!!) {
       toSend()
-      findNavController().popBackStack(R.id.inboxFragment, false)
-      findNavController().navigate(R.id.sentFragment)
+      // TODO: navigate to sent fragment
+
     } else {
-      findNavController().navigate(CreateLetterFragmentDirections.editProfile())
+      // TODO: navigate to edit profile fragment
+
     }
     hideKeyboard()
   }

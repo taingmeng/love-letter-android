@@ -34,20 +34,16 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.navGraphViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.gson.Gson
-import com.raywenderlich.android.loveletter.R
 import com.raywenderlich.android.loveletter.adapter.LetterAdapter
 import com.raywenderlich.android.loveletter.model.FragmentType
 import com.raywenderlich.android.loveletter.model.Letter
 import com.raywenderlich.android.loveletter.viewmodel.LettersViewModel
 import kotlinx.android.synthetic.main.fragment_inbox.*
 
-class InboxFragment : Fragment(R.layout.fragment_inbox) {
+class InboxFragment : Fragment() {
 
-  private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.main_nav_graph)
+  private val lettersViewModel: LettersViewModel? = null
 
   private val adapter by lazy { LetterAdapter(FragmentType.INBOX) }
 
@@ -55,20 +51,18 @@ class InboxFragment : Fragment(R.layout.fragment_inbox) {
     super.onViewCreated(view, savedInstanceState)
 
     adapter.setItemClickListener {
-      findNavController().navigate(
-        InboxFragmentDirections.presentLetter(Gson().toJson(it))
-      )
+      // TODO: navigate to presentation fragment
     }
     adapter.setItemDeleteListener {
-      lettersViewModel.deleteLetter(it, FragmentType.INBOX)
+      lettersViewModel?.deleteLetter(it, FragmentType.INBOX)
     }
     recyclerView.layoutManager = LinearLayoutManager(context)
     recyclerView.adapter = adapter
 
-    lettersViewModel.inboxLettersLiveData.observe(this, Observer { listItems: List<Letter> ->
+    lettersViewModel?.inboxLettersLiveData?.observe(this, Observer { listItems: List<Letter> ->
       adapter.update(listItems)
     })
-    lettersViewModel.loadInboxLetters()
+    lettersViewModel?.loadInboxLetters()
   }
 }
 
