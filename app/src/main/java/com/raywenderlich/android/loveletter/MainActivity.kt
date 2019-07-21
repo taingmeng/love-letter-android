@@ -95,7 +95,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
-    NavigationUI.setupWithNavController(navView, navController)
+    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
 
     navController.addOnDestinationChangedListener { _, destination, _ ->
       if (destination.id in arrayOf(
@@ -138,10 +138,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     fab.setOnClickListener {
       navController.navigate(R.id.createLetterFragment)
     }
-  }
-
-  override fun onSupportNavigateUp(): Boolean {
-    return NavigationUI.navigateUp(navController, appBarConfiguration)
   }
 
   override fun onBackPressed() {
