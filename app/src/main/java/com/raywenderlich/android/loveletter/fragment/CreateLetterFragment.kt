@@ -84,7 +84,7 @@ class CreateLetterFragment : Fragment() {
   }
 
   private fun handleSend(toSend: () -> Unit) {
-    if (lettersViewModel?.hasFullProfile()!!) {
+    if (lettersViewModel != null && lettersViewModel.hasFullProfile()) {
       toSend()
       // TODO: navigate to sent fragment
 
