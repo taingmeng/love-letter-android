@@ -46,6 +46,12 @@
     <action
         android:id="@+id/action_inboxFragment_to_presentationFragment"
         app:destination="@id/presentationFragment"/>
+    <action
+        android:id="@+id/action_inboxFragment_to_editProfileFragment"
+        app:destination="@id/editProfileFragment"/>
+    <action
+        android:id="@+id/action_inboxFragment_to_agreement_graph"
+        app:destination="@id/agreement_graph"/>
   </fragment>
   <fragment
       android:id="@+id/sentFragment"
@@ -58,6 +64,9 @@
     <action
         android:id="@+id/action_sentFragment_to_presentationFragment"
         app:destination="@id/presentationFragment"/>
+    <action
+        android:id="@+id/action_sentFragment_to_editProfileFragment"
+        app:destination="@id/editProfileFragment"/>
   </fragment>
   <fragment
       android:id="@+id/createLetterFragment"

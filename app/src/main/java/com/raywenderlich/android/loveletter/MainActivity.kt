@@ -30,11 +30,17 @@
 
 package com.raywenderlich.android.loveletter
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.navigateUp
 import com.google.android.material.navigation.NavigationView
 import com.raywenderlich.android.loveletter.databinding.ActivityMainBinding
 import com.raywenderlich.android.loveletter.databinding.NavHeaderMainBinding
@@ -44,9 +50,15 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-  // TODO: initialize navController
-
-  // TODO: initialize appBarConfiguration
+  private val navController by lazy { findNavController(R.id.nav_host_fragment) } //1
+  private val appBarConfiguration by lazy {
+    AppBarConfiguration(
+      setOf(
+        R.id.sentFragment,
+        R.id.inboxFragment
+      ), drawerLayout
+    )
+  } //2
 
   private var lettersViewModel: LettersViewModel? = null
   private lateinit var headerBinding: NavHeaderMainBinding
@@ -73,7 +85,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
       layoutInflater, R.layout.nav_header_main, activityMainBinding.navView, false
     )
     headerBinding.ivEdit.setOnClickListener {
-      // TODO: navigate to edit profile fragment
+      navController.navigate(R.id.editProfileFragment)
 
       drawerLayout.closeDrawer(GravityCompat.START)
     }
@@ -81,11 +93,28 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   private fun setupNavigation() {
-    // TODO: setup navController with drawerLayout
+    NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
 
-    // TODO: setup navController with toolbar and appBarConfiguration
+    NavigationUI.setupWithNavController(toolbar, navController, appBarConfiguration)
 
-    // TODO: add destination listener to navController
+    navController.addOnDestinationChangedListener { _, destination, _ ->
+      if (destination.id in arrayOf(
+          R.id.createLetterFragment,
+          R.id.presentationFragment,
+          R.id.editProfileFragment
+        )
+      ) {
+        fab.hide()
+      } else {
+        fab.show()
+      }
+
+      if (destination.id == R.id.presentationFragment) {
+        toolbar.visibility = View.GONE
+      } else {
+        toolbar.visibility = View.VISIBLE
+      }
+    }
 
   }
 
@@ -102,8 +131,12 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     navView.setNavigationItemSelectedListener(this)
 
     fab.setOnClickListener {
-      // TODO: navigate to create letter fragment
+      navController.navigate(R.id.createLetterFragment)
     }
+  }
+
+  override fun onSupportNavigateUp(): Boolean {
+    return navController.navigateUp(appBarConfiguration) ||  super.onSupportNavigateUp()
   }
 
   override fun onBackPressed() {
@@ -118,21 +151,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     when (item.itemId) {
 
       R.id.nav_inbox -> {
-        // TODO: navigate to inbox fragment
+        navController.popBackStack(R.id.inboxFragment, false)
       }
 
       R.id.nav_sent -> {
-        // TODO: navigate to sent fragment
+        navController.navigate(R.id.sentFragment)
       }
 
       R.id.nav_privacy_policy -> {
-        // TODO: navigate to privacy policy fragment
-
+        navController.navigate(Uri.parse("loveletter://agreement/privacy-policy"))
       }
 
       R.id.nav_terms_of_service -> {
-        // TODO: navigate to privacy terms of service fragment
-
+        navController.navigate(Uri.parse("loveletter://agreement/terms-of-service"))
       }
     }
     drawerLayout.closeDrawer(GravityCompat.START)
