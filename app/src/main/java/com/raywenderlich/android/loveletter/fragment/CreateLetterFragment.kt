@@ -36,6 +36,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.raywenderlich.android.loveletter.R
 import com.raywenderlich.android.loveletter.databinding.FragmentCreateLetterBinding
 import com.raywenderlich.android.loveletter.extension.Event
@@ -44,7 +46,7 @@ import com.raywenderlich.android.loveletter.viewmodel.LettersViewModel
 
 class CreateLetterFragment : Fragment() {
 
-  private val lettersViewModel: LettersViewModel? = null
+  private val lettersViewModel: LettersViewModel by navGraphViewModels(R.id.nav_graph)
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -87,9 +89,12 @@ class CreateLetterFragment : Fragment() {
     if (lettersViewModel != null && lettersViewModel.hasFullProfile()) {
       toSend()
       // TODO: navigate to sent fragment
+      findNavController().popBackStack(R.id.inboxFragment, false)
+      findNavController().navigate(R.id.sentFragment)
 
     } else {
       // TODO: navigate to edit profile fragment
+      findNavController().navigate(CreateLetterFragmentDirection.editProfile())
 
     }
     hideKeyboard()

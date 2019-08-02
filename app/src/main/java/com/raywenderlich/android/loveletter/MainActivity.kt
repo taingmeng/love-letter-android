@@ -37,6 +37,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
@@ -124,6 +125,17 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     // TODO: assign lettersViewModel to headerBinding
 
     // TODO: load profile with lettersViewModel
+    try {
+      val viewModelProvider = ViewModelProvider(
+          navController.getViewModelStoreOwner(R.id.nav_graph),
+      ViewModelProvider.AndroidViewModelFactory(application)
+      )
+      lettersViewModel = viewModelProvider.get(LettersViewModel::class.java)
+      headerBinding.viewModel = lettersViewModel
+      lettersViewModel?.loadProfile()
+    } catch (e: IllegalArgumentException) {
+      e.printStackTrace()
+    }
 
   }
 

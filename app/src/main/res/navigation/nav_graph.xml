@@ -71,9 +71,10 @@
   <fragment
       android:id="@+id/createLetterFragment"
       android:name="com.raywenderlich.android.loveletter.fragment.CreateLetterFragment"
-      android:label="CreateLetterFragment">
+      android:label="@string/create_letter"
+      tools:layout="@layout/fragment_create_letter">
     <action
-        android:id="@+id/action_createLetterFragment_to_editProfileFragment"
+        android:id="@+id/editProfile"
         app:destination="@id/editProfileFragment"/>
   </fragment>
   <dialog
