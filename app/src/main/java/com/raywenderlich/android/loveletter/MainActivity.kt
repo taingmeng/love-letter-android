@@ -120,11 +120,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
   }
 
   private fun setupViewModel() {
-    // TODO: initialize lettersViewModel
-
-    // TODO: assign lettersViewModel to headerBinding
-
-    // TODO: load profile with lettersViewModel
     try {
       val viewModelProvider = ViewModelProvider(
           navController.getViewModelStoreOwner(R.id.nav_graph),

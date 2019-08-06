@@ -38,15 +38,15 @@
   <fragment
       android:id="@+id/privacyPolicyFragment"
       android:name="com.raywenderlich.android.loveletter.agreement.PrivacyPolicyFragment"
-      android:label="fragment_privacy_policy"
-      tools:layout="@layout/fragment_privacy_policy">
-    <action
-        android:id="@+id/action_privacyPolicyFragment_to_termsOfServiceFragment"
-        app:destination="@id/termsOfServiceFragment"/>
-  </fragment>
+      android:label="@string/privacy_policy"
+      tools:layout="@layout/fragment_privacy_policy"/>
   <fragment
       android:id="@+id/termsOfServiceFragment"
       android:name="com.raywenderlich.android.loveletter.agreement.TermsOfServiceFragment"
-      android:label="fragment_terms_of_service"
-      tools:layout="@layout/fragment_terms_of_service"/>
+      android:label="@string/terms_of_service"
+      tools:layout="@layout/fragment_terms_of_service">
+    <deepLink
+        android:id="@+id/deepLink2"
+        app:uri="loveletter://agreement/terms-of-service"/>
+  </fragment>
 </navigation>

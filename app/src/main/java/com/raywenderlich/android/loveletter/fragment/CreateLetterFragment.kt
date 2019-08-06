@@ -88,14 +88,11 @@ class CreateLetterFragment : Fragment() {
   private fun handleSend(toSend: () -> Unit) {
     if (lettersViewModel != null && lettersViewModel.hasFullProfile()) {
       toSend()
-      // TODO: navigate to sent fragment
       findNavController().popBackStack(R.id.inboxFragment, false)
       findNavController().navigate(R.id.sentFragment)
 
     } else {
-      // TODO: navigate to edit profile fragment
-      findNavController().navigate(CreateLetterFragmentDirection.editProfile())
-
+      findNavController().navigate(R.id.editProfileFragment)
     }
     hideKeyboard()
   }
