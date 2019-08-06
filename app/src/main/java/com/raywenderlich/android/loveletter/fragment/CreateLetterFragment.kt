@@ -90,7 +90,6 @@ class CreateLetterFragment : Fragment() {
       toSend()
       findNavController().popBackStack(R.id.inboxFragment, false)
       findNavController().navigate(R.id.sentFragment)
-
     } else {
       findNavController().navigate(R.id.editProfileFragment)
     }
